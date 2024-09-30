@@ -12,8 +12,8 @@ jobs:
       - checkout
       - run: mkdir bucket && echo "lorem ipsum $(date)" > bucket/build_asset.txt
       - aws-s3/sync:
-        from: bucket
-        to: 's3://circleci-nx-test/pf'
+          from: bucket
+          to: 's3://circleci-nx-test/pf'
           
   main:
     docker:
