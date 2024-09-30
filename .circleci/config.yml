@@ -33,16 +33,19 @@ jobs:
           key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - .pnpm-store
-            
+
       #- run: pnpm exec playwright install --with-deps
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: pnpm exec nx-cloud record -- echo Hello World
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: pnpm exec nx affected --base=$NX_BASE --head=$NX_HEAD -t lint test build 
+  test:
+    docker:
+      - image: alpine:3.15
+    steps:
+      - run:
+          name: The First Step
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
 
-workflows:
-  version: 2
-
-  ci:
-    jobs:
-      - main
