@@ -17,7 +17,6 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4300';
  */
 export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src' }),
-  timeout: 5 * 60 * 1000, //this is five minutes
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL,
@@ -32,10 +31,6 @@ export default defineConfig({
     cwd: workspaceRoot,
   },
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
 
     {
       name: 'firefox',
@@ -46,7 +41,10 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    }
     // Uncomment for mobile browsers support
     /* {
       name: 'Mobile Chrome',
