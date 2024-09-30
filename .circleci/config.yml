@@ -10,6 +10,11 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+            
       - run:
           name: Install PNPM
           command: npm install --prefix=$HOME/.local -g pnpm@8
@@ -23,7 +28,12 @@ jobs:
       - nx/set-shas:
           main-branch-name: 'main'
 
-
+      - save_cache:
+          name: Save pnpm Package Cache
+          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - .pnpm-store
+            
       #- run: pnpm exec playwright install --with-deps
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: pnpm exec nx-cloud record -- echo Hello World
