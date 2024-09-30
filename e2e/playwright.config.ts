@@ -31,6 +31,10 @@ export default defineConfig({
     cwd: workspaceRoot,
   },
   projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
 
     {
       name: 'firefox',
@@ -41,10 +45,7 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    }
+
     // Uncomment for mobile browsers support
     /* {
       name: 'Mobile Chrome',
