@@ -61,7 +61,6 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - persist_to_workspace:
           root: .
 
