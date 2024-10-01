@@ -59,7 +59,7 @@ jobs:
 
   testttt:
     docker:
-      - image: alpine:latest
+      - image: cimg/base:current
     steps:
       - run: pwd && cd $CIRCLE_WORKING_DIRECTORY && pwd
       - attach_workspace:
