@@ -63,7 +63,7 @@ jobs:
     steps:
       - run: pwd
       - attach_workspace:
-          at: .
+          at: /home/circleci/project
       - run: ls
 
 workflows:
