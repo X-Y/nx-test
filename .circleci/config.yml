@@ -52,21 +52,31 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /home/circleci/project
+          at: ~/
       - aws-s3/sync:
           from: dist/nx
           to: 's3://circleci-nx-test/'
+
+  testttt:
+    docer:
+      - image: alpine:latest
+    steps:
+      - run: pwd && ls ~
+      - attach_workspace:
+          at: ~/
+      - run: ls 
 
 workflows:
   version: 2
 
   ci:
     jobs:
-      - main
-      - deploy-step:
-          requires:
-            - main
-          filters:
-            branches:
-              only: /main/
+      - testttt
+      # - main
+      # - deploy-step:
+      #     requires:
+      #       - main
+      #     filters:
+      #       branches:
+      #         only: /main/
     
