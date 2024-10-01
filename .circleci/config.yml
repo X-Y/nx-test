@@ -61,7 +61,7 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - run: echo 'hello world' > aaa.txt
+      - run: echo "hello world" > aaa.txt
       - persist_to_workspace:
           root: .
 
