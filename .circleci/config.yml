@@ -61,7 +61,7 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
-      - run: pwd && cd ~ && pwd
+      - run: pwd && cd $CIRCLE_WORKING_DIRECTORY && pwd
       - attach_workspace:
           at: $CIRCLE_WORKING_DIRECTORY
       - run: ls $CIRCLE_WORKING_DIRECTORY
