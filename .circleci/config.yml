@@ -63,8 +63,8 @@ jobs:
     steps:
       - run: pwd
       - attach_workspace:
-          at: $CIRCLE_WORKING_DIRECTORY
-      - run: ls $CIRCLE_WORKING_DIRECTORY
+          at: .
+      - run: ls
 
 workflows:
   version: 2
