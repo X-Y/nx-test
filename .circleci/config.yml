@@ -61,8 +61,12 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
+      - run: echo "lorem ipsum" > build_asset.txt
       - persist_to_workspace:
           root: .
+          paths:
+            - .
+
 
   testttt:
     docker:
