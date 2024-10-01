@@ -46,9 +46,9 @@ jobs:
           paths:
             - dist/nx
 
-  deploy:
+  deploy-step:
     docker: # Use the Docker executor for the build job
-      - image: cimg/base:current
+      - image: cimg/aws:2024.03.1
     steps:
       - checkout
       - attach_workspace:
@@ -63,7 +63,7 @@ workflows:
   ci:
     jobs:
       - main
-      - deploy:
+      - deploy-step:
           requires:
             - main
           filters:
