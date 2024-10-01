@@ -4,20 +4,10 @@ orbs:
   nx: nrwl/nx@1.6.2
   aws-s3: circleci/aws-s3@3.1.1 # use the AWS S3 orb in your configuration
 
-jobs:
-  deploy:
-    docker: # Use the Docker executor for the build job
-      - image: cimg/base:current
-    steps:
-      - checkout
-      - run: mkdir bucket && echo "lorem ipsum $(date)" > bucket/build_asset.txt
-      - aws-s3/sync:
-          from: bucket
-          to: 's3://circleci-nx-test/pf'
-          
+jobs:          
   main:
     docker:
-      - image: cimg/node:lts-browsers
+      - image: cimg/base:current
     steps:
       - checkout
 
@@ -51,10 +41,26 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - run: pnpm exec nx affected --base=$NX_BASE --head=$NX_HEAD -t lint test build 
 
+  deploy:
+    docker: # Use the Docker executor for the build job
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - run: mkdir bucket && echo "lorem ipsum $(date)" > bucket/build_asset.txt
+      - aws-s3/sync:
+          from: bucket
+          to: 's3://circleci-nx-test/pf'
+
 workflows:
   version: 2
 
   ci:
     jobs:
-      - deploy
-    #  - main
+      - main
+      - deploy:
+          requires:
+            - main
+          filters:
+            branches:
+              only: /main/
+    
