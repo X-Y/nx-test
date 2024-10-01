@@ -80,7 +80,7 @@ workflows:
   ci:
     jobs:
       - testttt0
-      - testttt
+      - testttt:
           requires:
             - testttt0
 
