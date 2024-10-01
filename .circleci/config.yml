@@ -61,7 +61,7 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - run: pwd && cd $CIRCLE_WORKING_DIRECTORY && pwd
+      - run: pwd
       - attach_workspace:
           at: $CIRCLE_WORKING_DIRECTORY
       - run: ls $CIRCLE_WORKING_DIRECTORY
