@@ -58,7 +58,7 @@ jobs:
           to: 's3://circleci-nx-test/'
 
   testttt:
-    docer:
+    docker:
       - image: alpine:latest
     steps:
       - run: pwd && ls ~
