@@ -57,13 +57,21 @@ jobs:
           from: dist/nx
           to: 's3://circleci-nx-test/'
 
+  testttt0:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run: echo 'hello world' > aaa.txt
+      - persist_to_workspace:
+          root: .
+
   testttt:
     docker:
       - image: cimg/base:current
     steps:
       - run: pwd
       - attach_workspace:
-          at: /home/circleci/project
+          at: .
       - run: ls
 
 workflows:
@@ -71,7 +79,11 @@ workflows:
 
   ci:
     jobs:
+      - testttt0
       - testttt
+          requires:
+            - testttt0
+
       # - main
       # - deploy-step:
       #     requires:
