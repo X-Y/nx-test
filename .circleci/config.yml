@@ -59,7 +59,7 @@ jobs:
 
   testttt0:
     docker:
-      - image: cimg/base:current
+      - image: alpine:latest
     steps:
       - run: echo "lorem ipsum" > build_asset.txt
       - persist_to_workspace:
