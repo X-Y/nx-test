@@ -52,7 +52,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: ./dist/nx
       - aws-s3/sync:
           from: dist/nx
           to: 's3://circleci-nx-test/'
@@ -66,7 +66,6 @@ jobs:
           root: .
           paths:
             - .
-
 
   testttt:
     docker:
@@ -82,16 +81,15 @@ workflows:
 
   ci:
     jobs:
-      - testttt0
-      - testttt:
-          requires:
-            - testttt0
-
-      # - main
-      # - deploy-step:
+      # - testttt0
+      # - testttt:
       #     requires:
-      #       - main
-      #     filters:
-      #       branches:
-      #         only: /main/
+      #       - testttt0
+      - main
+      - deploy-step:
+          requires:
+            - main
+          filters:
+            branches:
+              only: /main/
     
