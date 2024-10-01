@@ -48,7 +48,7 @@ jobs:
 
   deploy-step:
     docker: # Use the Docker executor for the build job
-      - image: cimg/aws:2024.03.1
+      - image: cimg/base:current
     steps:
       - checkout
       - attach_workspace:
